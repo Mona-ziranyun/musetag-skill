@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MuseTag：AI 看图，从规范设计词库推荐标签，你只需确认或删除。" />
+  <title>MuseTag — 让灵感自动归位</title>
+  <style>
+    :root { --ink:#302d28; --muted:#7d7468; --paper:#f7f3ec; --khaki:#9b8b72; --deep:#625746; --olive:#6f735b; --line:#d7cebf; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:#e6dfd3; font-family:Inter,-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; }
+    a { color:inherit; }
+    .shell { width:min(1180px,calc(100% - 40px)); margin:auto; }
+    nav { height:76px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(98,87,70,.18); }
+    .brand { display:flex; align-items:center; gap:11px; text-decoration:none; font-family:Georgia,serif; font-size:20px; font-weight:700; }
+    .brand img { width:38px; height:38px; }
+    nav div { display:flex; gap:24px; align-items:center; }
+    nav div a { color:var(--muted); text-decoration:none; font-size:13px; }
+    .button { display:inline-block; padding:12px 18px; border-radius:10px; background:var(--deep); color:white; text-decoration:none; font-size:13px; font-weight:700; }
+    .hero { padding:92px 0 58px; text-align:center; }
+    .kicker { color:var(--olive); font-size:12px; font-weight:800; letter-spacing:.18em; }
+    h1 { max-width:830px; margin:20px auto; font-family:Georgia,"Songti SC",serif; font-size:clamp(44px,7vw,78px); font-weight:500; line-height:1.08; letter-spacing:-.035em; }
+    .hero p { max-width:690px; margin:0 auto 30px; color:var(--muted); font-size:17px; line-height:1.8; }
+    .flow { display:flex; justify-content:center; flex-wrap:wrap; gap:9px; margin-bottom:35px; color:#5c5449; font-size:13px; }
+    .flow span { padding:8px 13px; border:1px solid var(--line); border-radius:999px; background:rgba(247,243,236,.65); }
+    .showcase { width:100%; display:block; border-radius:18px; box-shadow:0 28px 70px rgba(72,62,48,.18); }
+    section { padding:90px 0; }
+    h2 { margin:0 0 16px; font-family:Georgia,"Songti SC",serif; font-size:38px; font-weight:500; }
+    .lead { max-width:620px; margin:0; color:var(--muted); line-height:1.8; }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:38px; }
+    .card { padding:27px; border:1px solid var(--line); border-radius:15px; background:rgba(247,243,236,.72); }
+    .card b { display:block; margin-bottom:12px; color:var(--olive); font-size:12px; letter-spacing:.08em; }
+    .card h3 { margin:0 0 10px; font-size:18px; }
+    .card p { margin:0; color:var(--muted); font-size:13px; line-height:1.7; }
+    .taxonomy { display:grid; grid-template-columns:1fr 1.4fr; gap:70px; align-items:start; }
+    .tags { display:flex; flex-wrap:wrap; gap:9px; }
+    .tags span { padding:9px 12px; border-radius:999px; color:#555b43; background:#dddfd1; font-size:12px; }
+    .privacy { padding:38px; border-radius:18px; color:#f8f5ef; background:var(--deep); display:grid; grid-template-columns:1fr 1fr; gap:50px; }
+    .privacy h2 { color:white; }
+    .privacy p, .privacy li { color:#ddd6ca; line-height:1.8; font-size:13px; }
+    footer { padding:45px 0; border-top:1px solid rgba(98,87,70,.18); display:flex; justify-content:space-between; color:var(--muted); font-size:12px; }
+    @media (max-width:800px) { nav div a:not(.button){display:none}.hero{padding-top:64px}.grid,.taxonomy,.privacy{grid-template-columns:1fr}.taxonomy{gap:32px}.showcase{border-radius:10px}section{padding:60px 0} }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <nav>
+      <a class="brand" href="#top"><img src="icon.svg" alt="" />MuseTag</a>
+      <div><a href="#workflow">工作方式</a><a href="#taxonomy">标签体系</a><a href="#privacy">隐私</a><a class="button" href="https://github.com/Mona-ziranyun/musetag-skill">查看 GitHub</a></div>
+    </nav>
+
+    <main id="top">
+      <header class="hero">
+        <div class="kicker">AI-ASSISTED · CONTROLLED VOCABULARY</div>
+        <h1>把图片拖进去。<br />剩下的，只需确认。</h1>
+        <p>MuseTag 自动看图，从设计行业方法整理出的规范词库中推荐 5～8 个标签。没有自由造词，没有混乱的近义词。</p>
+        <div class="flow"><span>拖入图片</span><span>AI 自动推荐</span><span>删除或补选</span><span>确认完成</span></div>
+        <img class="showcase" src="showcase.svg" alt="MuseTag 素材库界面，右侧显示 AI 推荐标签" />
+      </header>
+
+      <section id="workflow">
+        <h2>整理，不再是一项工作。</h2>
+        <p class="lead">原图先落库，AI 再异步分析。就算网络失败，素材也不会丢；确认前，建议也不会进入正式标签。</p>
+        <div class="grid">
+          <article class="card"><b>01 · IMPORT</b><h3>拖进来</h3><p>支持 JPG、PNG、WebP 与多张导入。文件先写入浏览器本地数据库。</p></article>
+          <article class="card"><b>02 · SUGGEST</b><h3>AI 看图</h3><p>每张推荐 5～8 个标签，结构化输出与程序双重限制，只能选择规范词。</p></article>
+          <article class="card"><b>03 · CONFIRM</b><h3>你来定稿</h3><p>点击删除不合适的，必要时从分组词库补选，一键确认完成。</p></article>
+        </div>
+      </section>
+
+      <section id="taxonomy" class="taxonomy">
+        <div><h2>为找回而设计的词表。</h2><p class="lead">借鉴 Getty AAT、Library of Congress TGM、IPTC 与 Adobe 的视觉编目方法，裁剪为个人创作者真正用得上的十个维度。</p></div>
+        <div class="tags"><span>用途</span><span>媒介</span><span>主体</span><span>场景</span><span>构图</span><span>版式</span><span>色彩</span><span>光线</span><span>风格</span><span>氛围</span></div>
+      </section>
+
+      <section id="privacy">
+        <div class="privacy">
+          <div><h2>本地是默认，发送是透明的。</h2><p>素材库保存在当前浏览器。只有进行 AI 分析时，当前图片才会发送到你配置的 OpenAI API。</p></div>
+          <ul><li>API Key 只由本地服务读取</li><li>不会进入前端、IndexedDB 或备份</li><li>支持原图与元数据完整备份</li><li>删除库内副本不会碰来源文件</li></ul>
+        </div>
+      </section>
+    </main>
+
+    <footer><span>MuseTag · 让灵感自动归位</span><span>MIT License</span></footer>
+  </div>
+</body>
+</html>
