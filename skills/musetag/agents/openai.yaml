@@ -1,0 +1,5 @@
+interface:
+  display_name: "MuseTag"
+  short_description: "AI 看图，从规范设计词库推荐标签；你只需确认或删除"
+  default_prompt: "使用 $musetag 创建一个可运行的 AI 图片标签素材库。"
+  brand_color: "#625746"
